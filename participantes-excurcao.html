@@ -1,10 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <div id="corpoFormulario">
+        <form name="formEntrada">
+            <div>
+                <span>
+                    Nome:<input type="text" name="nome">
+                </span>
+            </div>
+            <div>
+                <span>
+                    Idade:<input type="text" name="idade">
+                </span>
+            </div>
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+    <div id="listas">
+        <span>
+            <b>Adultos:</b>
+            <ul id="adultos"></ul>
+        </span>
+        <span>
+            <b>Estudantes:</b>
+            <ul id="estudantes"></ul>
+        </span>
+    </div>
+    <script>
+        listAdutos = document.getElementById("adultos");
+        listEstudantes = document.getElementById("estudantes");
+        formulario = document.forms.formEntrada;
+        
+    </script>
 </body>
+
 </html>
