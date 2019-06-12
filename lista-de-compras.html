@@ -12,11 +12,11 @@
     <main>
         <form name="formItems">
             <div>
-                <label>Quantidade:
-                    <input name="quantidade" type="text">
-                </label>
                 <label>Item:
                     <input name="produto" type="text">
+                </label>
+                <label>Quantidade:
+                    <input name="quantidade" type="text">
                 </label>
             </div>
             <div>
@@ -38,12 +38,15 @@
             e.preventDefault();
             var itemProduto = formLista.elements.produto;
             var quantidadeProd = formLista.elements.quantidade;
-            if(itemProduto.value!="" && !isNaN(quantidadeProd.value))
+            if(itemProduto.value!="" && !isNaN(quantidadeProd.value) && quantidadeProd.value!="")
             {
                 var novoItem = document.createElement("li");
                 novoItem.innerText = itemProduto.value + " - " + quantidadeProd.value;
                 lstItens.appendChild(novoItem);
             }
+            itemProduto.value ="";
+            quantidadeProd.value = "";
+            itemProduto.focus();
         }
         function apagarLista() {
             lstItens.innerText = "";
