@@ -39,13 +39,12 @@
             e.preventDefault();
             var itemProduto = formLista.elements.produto;
             var quantidadeProd = formLista.elements.quantidade;
-            if(itemProduto.value!="" && quantidadeProd.value!="")
+            if(itemProduto.value!="" && !isNaN(quantidadeProd.value))
             {
                 var novoItem = document.createElement("li");
                 novoItem.innerText = itemProduto.value + " - " + quantidadeProd.value;
                 lstItens.appendChild(novoItem);
             }
-            return false;
         }
         function apagarLista() {
             lstItens.innerText = "";
