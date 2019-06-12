@@ -36,6 +36,7 @@
         var listAdutos = document.getElementById("adultos");
         var listEstudantes = document.getElementById("estudantes");
         var formulario = document.forms.formEntrada;
+
         formulario.addEventListener("submit",adicionaParticipante);
 
         function adicionaParticipante(e)
@@ -43,17 +44,41 @@
             e.preventDefault();
             nomeParticipante = formulario.elements.nome;
             idadeParticipante = formulario.elements.idade;
+
             if(nomeParticipante.value!="" && !isNaN(idadeParticipante.value) && idadeParticipante.value!="")
             {
+                var participante = document.createElement("li");
+                var btnRMV = document.createElement("button");
+
+                participante.innerText = nomeParticipante.value + " - " + idadeParticipante.value;
+                btnRMV.innerHTML = "remover";
+                btnRMV.style.visibility = "hidden";
+
+                participante.appendChild(btnRMV);
+
+                participante.addEventListener("click", editaParticipante(participante));
+                btnRMV.addEventListener("click",removeParticipante(btnRMV.parentElement));
+                
                 if(parseInt(idadeParticipante.value)>18)
                 {
-
+                        listAdutos.appendChild(participante);
                 }
                 else if(parseInt(idadeParticipante.value)>0)
                 {
-                    
+                    listEstudantes.appendChild(participante);
                 }
             }
+            nomeParticipante.value ="";
+            idadeParticipante.value = "";
+            nomeParticipante.focus();
+        }
+        function removeParticipante(linhaParticipante)
+        {
+
+        }
+        function editaParticipante(linhaParticipante)
+        {
+            
         }
     </script>
 </body>
