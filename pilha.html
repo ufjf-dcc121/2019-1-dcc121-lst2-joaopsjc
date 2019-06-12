@@ -11,7 +11,7 @@
         <form name="formEntrada">
             <div>
                 <span>Valor a empilhar:
-                    <input type="text">
+                    <input name="valor" type="text">
                 </span>
             </div>
             <input type="submit" value="empilhar">
@@ -19,11 +19,28 @@
         </form>
         <ul id="pilha"></ul>
     </main>
-
     <script>
         var btnRemove = document.getElementById("desempilhar");
         var pilhaItens = document.getElementById("pilha");
-        var 
+        var formulario = document.forms.formEntrada;
+        btnRemove.addEventListener("click",desempilha);
+        formulario.addEventListener("submit",function (e)
+        {
+            e.preventDefault();
+            var valor = formulario.elements.valor;
+            if(valor.value!="")
+            {
+                novoValor = document.createElement("li");
+                novoValor.innerText = valor.value;
+                pilhaItens.appendChild(novoValor);
+                valor.value = "";
+                valor.focus();
+            }
+        })
+        function desempilha()
+        {
+            pilhaItens.removeChild(pilhaItens.lastChild);
+        }
     </script>
 </body>
 
