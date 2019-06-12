@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <form name="formEntrada">
+            <div>
+                <span>Valor a empilhar:
+                    <input type="text">
+                </span>
+            </div>
+            <input type="submit" value="empilhar">
+            <input id="desempilhar" type="button" value="desempilhar">
+        </form>
+        <li id="pilha"></li>
+    </main>
+
+    <script>
+        var btnRemove = document.getElementById("desempilhar");
+        var pilhaItens = document.getElementById("pilha");
+    </script>
+</body>
+
+</html>
