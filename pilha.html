@@ -39,7 +39,11 @@
         })
         function desempilha()
         {
-            pilhaItens.removeChild(pilhaItens.lastChild);
+            var ultimoElemento = pilhaItens.lastChild;
+            if(ultimoElemento!=null)
+            {
+                pilhaItens.removeChild(ultimoElemento);
+            }
         }
     </script>
 </body>
