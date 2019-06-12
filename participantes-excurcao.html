@@ -22,7 +22,7 @@
             <input type="submit" value="Enviar">
         </form>
     </div>
-    <div id="listas">
+    <div id="corpoListas">
         <span>
             <b>Adultos:</b>
             <ul id="adultos"></ul>
@@ -33,10 +33,28 @@
         </span>
     </div>
     <script>
-        listAdutos = document.getElementById("adultos");
-        listEstudantes = document.getElementById("estudantes");
-        formulario = document.forms.formEntrada;
-        
+        var listAdutos = document.getElementById("adultos");
+        var listEstudantes = document.getElementById("estudantes");
+        var formulario = document.forms.formEntrada;
+        formulario.addEventListener("submit",adicionaParticipante);
+
+        function adicionaParticipante(e)
+        {
+            e.preventDefault();
+            nomeParticipante = formulario.elements.nome;
+            idadeParticipante = formulario.elements.idade;
+            if(nomeParticipante.value!="" && !isNaN(idadeParticipante.value) && idadeParticipante.value!="")
+            {
+                if(parseInt(idadeParticipante.value)>18)
+                {
+
+                }
+                else if(parseInt(idadeParticipante.value)>0)
+                {
+                    
+                }
+            }
+        }
     </script>
 </body>
 
