@@ -19,6 +19,7 @@
                     Idade:<input type="text" name="idade">
                 </span>
             </div>
+            <input id="remover" type="button" value="Remover">
             <input type="submit" value="Enviar">
         </form>
     </div>
@@ -36,50 +37,73 @@
         var listAdutos = document.getElementById("adultos");
         var listEstudantes = document.getElementById("estudantes");
         var formulario = document.forms.formEntrada;
+        var btnRemover = document.getElementById("remover");
+        var participanteAtual;
 
-        formulario.addEventListener("submit",adicionaParticipante);
+        btnRemover.style.visibility = "hidden";
 
-        function adicionaParticipante(e)
+        formulario.addEventListener("submit", adicionaParticipante);
+        btnRemover.addEventListener("click", removeParticipante());
+        document.getElementsByTagName("body")[0].addEventListener("click",function()
         {
+            if(document.activeElement==document.getElementsByTagName("body")[0])
+            {
+                btnRemover.style.visibility = "hidden";
+                participanteAtual =null;
+            }
+        })
+
+        function adicionaParticipante(e) {
             e.preventDefault();
             nomeParticipante = formulario.elements.nome;
             idadeParticipante = formulario.elements.idade;
 
-            if(nomeParticipante.value!="" && !isNaN(idadeParticipante.value) && idadeParticipante.value!="")
-            {
+            if (nomeParticipante.value != "" && !isNaN(idadeParticipante.value) && idadeParticipante.value != "") {
                 var participante = document.createElement("li");
-                var btnRMV = document.createElement("button");
+                var dadosNome = document.createElement("a");
+                var dadosIdade = document.createElement("a");
 
-                participante.innerText = nomeParticipante.value + " - " + idadeParticipante.value;
-                btnRMV.innerHTML = "remover";
-                btnRMV.style.visibility = "hidden";
+                dadosNome.innerText = nomeParticipante.value;
+                dadosIdade.innerText = idadeParticipante.value;
+                participante.appendChild(dadosNome);
+                participante.append(" - ");
+                participante.appendChild(dadosIdade);
+                participante.addEventListener("click", function () {
+                    participanteAtual = participante;
+                    editaParticipante(participante);
+                });
 
-                participante.appendChild(btnRMV);
 
-                participante.addEventListener("click", editaParticipante(participante));
-                btnRMV.addEventListener("click",removeParticipante(btnRMV.parentElement));
-                
-                if(parseInt(idadeParticipante.value)>18)
-                {
-                        listAdutos.appendChild(participante);
+                if (parseInt(idadeParticipante.value) > 18) {
+                    listAdutos.appendChild(participante);
                 }
-                else if(parseInt(idadeParticipante.value)>0)
-                {
+                else if (parseInt(idadeParticipante.value) > 0) {
                     listEstudantes.appendChild(participante);
                 }
             }
-            nomeParticipante.value ="";
+            nomeParticipante.value = "";
             idadeParticipante.value = "";
             nomeParticipante.focus();
         }
-        function removeParticipante(linhaParticipante)
-        {
+        function removeParticipante() {
 
         }
-        function editaParticipante(linhaParticipante)
-        {
-            
+        function editaParticipante(linhaParticipante) {
+
+            linhaParticipante.firstChild.contentEditable = "true";
+            linhaParticipante.lastChild.contentEditable = "true";
+            btnRemover.style.visibility = "visible";
+
+            setTimeout(function() {
+            if (document.activeElement != linhaParticipante.firstChild && document.activeElement != linhaParticipante.lastChild)
+            {
+                linhaParticipante.firstChild.contentEditable = "false";
+                linhaParticipante.lastChild.contentEditable = "false";
+                btnRemover.style.visibility = "hidden";
+            }
+            }, 300);
         }
+
     </script>
 </body>
 
