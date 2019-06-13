@@ -38,18 +38,19 @@
         var listEstudantes = document.getElementById("estudantes");
         var formulario = document.forms.formEntrada;
         var btnRemover = document.getElementById("remover");
-        var participanteAtual;
+        var participanteAtual = null;
 
         btnRemover.style.visibility = "hidden";
 
         formulario.addEventListener("submit", adicionaParticipante);
-        btnRemover.addEventListener("click", removeParticipante());
+        btnRemover.addEventListener("click", removeParticipante);
+
         document.getElementsByTagName("body")[0].addEventListener("click",function()
         {
             if(document.activeElement==document.getElementsByTagName("body")[0])
             {
                 btnRemover.style.visibility = "hidden";
-                participanteAtual =null;
+                participanteAtual = null;
             }
         })
 
@@ -69,12 +70,11 @@
                 participante.append(" - ");
                 participante.appendChild(dadosIdade);
                 participante.addEventListener("click", function () {
-                    participanteAtual = participante;
                     editaParticipante(participante);
                 });
 
 
-                if (parseInt(idadeParticipante.value) > 18) {
+                if (parseInt(idadeParticipante.value) > 17) {
                     listAdutos.appendChild(participante);
                 }
                 else if (parseInt(idadeParticipante.value) > 0) {
@@ -86,10 +86,23 @@
             nomeParticipante.focus();
         }
         function removeParticipante() {
-
+            if(participanteAtual!=null)
+            {
+                if(parseInt(participanteAtual.lastChild.innerText)>17)
+                {
+                    listAdutos.removeChild(participanteAtual);
+                }
+                else
+                {
+                    listEstudantes.removeChild(participanteAtual);
+                }
+                participanteAtual = null;
+                btnRemover.style.visibility = "hidden";
+            }
         }
         function editaParticipante(linhaParticipante) {
 
+            participanteAtual = linhaParticipante;
             linhaParticipante.firstChild.contentEditable = "true";
             linhaParticipante.lastChild.contentEditable = "true";
             btnRemover.style.visibility = "visible";
