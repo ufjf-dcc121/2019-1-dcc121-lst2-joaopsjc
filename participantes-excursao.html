@@ -9,18 +9,18 @@
 <body>
     <div id="corpoFormulario">
         <form name="formEntrada">
-            <div>
+            <div class="campoFormulario">
                 <span>
                     Nome:<input type="text" name="nome">
                 </span>
             </div>
-            <div>
+            <div class="campoFormulario">
                 <span>
                     Idade:<input type="text" name="idade">
                 </span>
             </div>
-            <input id="remover" type="button" value="Remover">
-            <input type="submit" value="Enviar">
+            <input class="campoFormulario" id="remover" type="button" value="Remover">
+            <input class="campoFormulario" type="submit" value="Enviar">
         </form>
     </div>
     <div id="corpoListas">
@@ -125,9 +125,12 @@
         document.getElementById("corpoListas").style.padding = "10px";
         document.getElementById("corpoFormulario").style.margin = "5px";
         document.getElementById("corpoListas").style.margin = "5px";
-        document.getElementById("corpoFormulario").style.width = "30%";
-        document.getElementById("corpoListas").style.width = "30%";
-
+        document.getElementById("corpoFormulario").style.width = "300px";
+        document.getElementById("corpoListas").style.width = "300px";
+        var campos = document.querySelectorAll(".campoFormulario"); 
+        for (var index = 0; index < campos.length; index++) {
+            campos[index].style.margin = "2px"; 
+        }
     </script>
 </body>
 
