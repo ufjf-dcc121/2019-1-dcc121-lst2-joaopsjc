@@ -36,7 +36,7 @@
             e.preventDefault();
             var itemProduto = formLista.elements.produto;
             var quantidadeProd = formLista.elements.quantidade;
-            if(itemProduto.value!="" && !isNaN(quantidadeProd.value) && quantidadeProd.value!="")
+            if(itemProduto.value!="" && !isNaN(parseInt(quantidadeProd.value)) && quantidadeProd.value!="")
             {
                 var novoItem = document.createElement("li");
                 novoItem.innerText = itemProduto.value + " - " + quantidadeProd.value;
