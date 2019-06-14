@@ -37,9 +37,7 @@
                 <th>Velocidade</th>
                 <th>Idade Máxima</th>
             </thead>
-            <tbody>
-                <tr id="tabela">
-                </tr>
+            <tbody id="tabela">
             </tbody>
         </table>
         <div>
@@ -53,8 +51,15 @@
         var btnApagar = document.getElementById("apagar");
         var trTabela = document.getElementById("tabela");
         var formulario = document.forms.formCarac;
-        var maiorPeso=0,maiorIdade=0,maiorAltura=0,maiorVeloci=0;
+        var maiorPeso=0,maiorIdade=0,maiorAltura=0,maiorVeloci=0, pesoMedio=0;
+
+        var txtMaiorAltura= document.getElementById("alto");
+        var txtMaiorPeso= document.getElementById("pesado");
+        var txtMaiorVeloci= document.getElementById("veloz");
+        var txtMaiorIdade= document.getElementById("longevo");
+
         formulario.addEventListener("submit",adicionarAnimal);
+
         function adicionarAnimal()
         {
             e.preventDefaul();
@@ -67,7 +72,43 @@
             {
                 if(!isNaN(parseInt(intIdade.value)) && !isNaN(parseInt(intAltura.value)) && !isNaN(parseInt(intPeso.value)) && !isNaN(parseInt(intVelocidade.value)))
                 {
-                    
+                    var trAnimal = document.createElement("td");
+                    var trAltura = document.createElement("td");
+                    var trPeso =  document.createElement("td");
+                    var trVeloci = document.createElement("td");
+                    var trIdade = document.createElement("td");
+                    var novaLinha = document.createElement("tr");
+                    trAnimal.innerText = txtAnimal.value;
+                    trAltura.innerText = parseInt(intAltura.value);
+                    trPeso.innerText =  parseInt(intPeso.value);
+                    trVeloci.innerText = parseInt(intVelocidade.value);
+                    trIdade.innerText = parseInt(intIdade.value);
+                    novaLinha.appendChild(trAnimal);
+                    novaLinha.appendChild(trAltura);
+                    novaLinha.appendChild(trPeso);
+                    novaLinha.appendChild(trVeloci);
+                    novaLinha.appendChild(trIdade);
+                    if(parseInt(intAltura.value) > maiorAltura)
+                    {
+                        maiorAltura = parseInt(intAltura.value);
+                        txtMaiorAltura.innerText = txtAnimal.value;
+                    }
+                    if(parseInt(intPeso.value) >maiorPeso )
+                    {
+                        maiorPeso = parseInt(intPeso.value);
+                        txtMaiorPeso.innerText = txtAnimal.value;
+                    }
+                    if(parseInt(intVelocidade.value) >maiorVeloci )
+                    {
+                        maiorVeloci = parseInt(intVelocidade.value);
+                        txtMaiorVeloci.innerText = txtAnimal.value;
+                    }
+                    if(parseInt(intIdade.value) > maiorIdade)
+                    {
+                        maiorIdade = parseInt(intIdade.value);
+                        txtMaiorIdade.innerText = txtAnimal.value;
+                    }
+
                 }
             }
         }
