@@ -56,10 +56,12 @@
                 </tr>
             </tfoot>
         </table>
+        <ul id="acimaMedia"></ul>
     </main>
     <script>
         var btnApagar = document.getElementById("apagar");
         var bdTabela = document.getElementById("tabela");
+        var lstAcimaMedia = document.getElementById("acimaMedia");
         var formulario = document.forms.formCarac;
         var maiorPeso=0,maiorIdade=0,maiorAltura=0,maiorVeloci=0,
         alturaTotal=0, pesoTotal=0,velocidadeTotal=0,idadeTotal=0;
@@ -93,6 +95,7 @@
             txtIdadeMd.innerText ="";
 
             bdTabela.innerText =""; 
+            lstAcimaMedia.innerText="";
         }
         function adicionarAnimal(e)
         {
@@ -131,10 +134,13 @@
                     novaLinha.appendChild(trIdade);
                     bdTabela.appendChild(novaLinha);
                     
-                    txtAlturaMd.innerText = parseInt(intAltura.value)/bdTabela.getElementsByTagName("tr").length;
-                    txtPesoMd.innerText = parseInt(intPeso.value)/bdTabela.getElementsByTagName("tr").length;
-                    txtVelociMd.innerText = parseInt(intVelocidade.value)/bdTabela.getElementsByTagName("tr").length;
-                    txtIdadeMd.innerText = parseInt(intIdade.value)/bdTabela.getElementsByTagName("tr").length;
+                    var linhasTabela = bdTabela.getElementsByTagName("tr");
+
+                    txtAlturaMd.innerText = parseInt(alturaTotal)/linhasTabela.length;
+                    txtPesoMd.innerText = parseInt(pesoTotal)/linhasTabela.length;
+                    txtVelociMd.innerText = parseInt(velocidadeTotal)/linhasTabela.length;
+                    txtIdadeMd.innerText = parseInt(idadeTotal)/linhasTabela.length;
+                    
 
                     if(parseInt(intAltura.value) > maiorAltura)
                     {
@@ -156,7 +162,22 @@
                         maiorIdade = parseInt(intIdade.value);
                         txtMaiorIdade.innerText = txtAnimal.value;
                     }
+                    mediaPeso();
+                }
+            }
+        }
+        function mediaPeso()
+        {
+            var novaLinhaLista = document.createElement("li");
+            var linhasTabela = bdTabela.getElementsByTagName("tr");
+            lstAcimaMedia.innerText="";
 
+            for (var index = 0; index < linhasTabela.length; index++) {
+                var nomeAnimal = linhasTabela[index].getElementsByTagName("td")[0].innerText;
+                var pesoAnimal = linhasTabela[index].getElementsByTagName("td")[2].innerText;
+                if (parseInt(pesoAnimal)>(pesoTotal/linhasTabela.length)) {
+                    novaLinhaLista.innerText = nomeAnimal;
+                    lstAcimaMedia.appendChild(novaLinhaLista);
                 }
             }
         }
