@@ -41,14 +41,14 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td>Maiores</td>
+                    <th>Maiores</th>
                     <td id="alto"></td>
                     <td id = "pesado"></td>
                     <td id="veloz"></td>
                     <td id="longevo"></td>
                 </tr>
                 <tr>
-                    <td>Médias</td>
+                    <th>Médias</th>
                     <td id="mdAltura"></td>
                     <td id = "mdPeso"></td>
                     <td id="mdVeloci"></td>
@@ -69,7 +69,7 @@
         var txtMaiorVeloci= document.getElementById("veloz");
         var txtMaiorIdade= document.getElementById("longevo");
 
-        var txtAltauraMd= document.getElementById("mdAltura");
+        var txtAlturaMd= document.getElementById("mdAltura");
         var txtPesoMd= document.getElementById("mdPeso");
         var txtVelociMd= document.getElementById("mdVeloci");
         var txtIdadeMd= document.getElementById("mdIdade");
@@ -81,10 +81,17 @@
         {
             maiorPeso=0,maiorIdade=0,maiorAltura=0,maiorVeloci=0,
             alturaTotal=0, pesoTotal=0,velocidadeTotal=0,idadeTotal=0;
+
             txtMaiorAltura.innerText ="";
             txtMaiorPeso.innerText ="";
             txtMaiorVeloci.innerText ="";
             txtMaiorIdade.innerText ="";
+
+            txtAlturaMd.innerText ="";
+            txtPesoMd.innerText ="";
+            txtVelociMd.innerText ="";
+            txtIdadeMd.innerText ="";
+
             bdTabela.innerText =""; 
         }
         function adicionarAnimal(e)
@@ -123,8 +130,11 @@
                     novaLinha.appendChild(trVeloci);
                     novaLinha.appendChild(trIdade);
                     bdTabela.appendChild(novaLinha);
-
-
+                    
+                    txtAlturaMd.innerText = parseInt(intAltura.value)/bdTabela.getElementsByTagName("tr").length;
+                    txtPesoMd.innerText = parseInt(intPeso.value)/bdTabela.getElementsByTagName("tr").length;
+                    txtVelociMd.innerText = parseInt(intVelocidade.value)/bdTabela.getElementsByTagName("tr").length;
+                    txtIdadeMd.innerText = parseInt(intIdade.value)/bdTabela.getElementsByTagName("tr").length;
 
                     if(parseInt(intAltura.value) > maiorAltura)
                     {
