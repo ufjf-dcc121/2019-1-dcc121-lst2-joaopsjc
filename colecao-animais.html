@@ -49,9 +49,9 @@
     </main>
     <script>
         var btnApagar = document.getElementById("apagar");
-        var trTabela = document.getElementById("tabela");
+        var bdTabela = document.getElementById("tabela");
         var formulario = document.forms.formCarac;
-        var maiorPeso=0,maiorIdade=0,maiorAltura=0,maiorVeloci=0, pesoMedio=0;
+        var maiorPeso=0,maiorIdade=0,maiorAltura=0,maiorVeloci=0, pesoTotal=0;
 
         var txtMaiorAltura= document.getElementById("alto");
         var txtMaiorPeso= document.getElementById("pesado");
@@ -60,9 +60,9 @@
 
         formulario.addEventListener("submit",adicionarAnimal);
 
-        function adicionarAnimal()
+        function adicionarAnimal(e)
         {
-            e.preventDefaul();
+            e.preventDefault();
             var txtAnimal = formulario.elements.animal;
             var intAltura = formulario.elements.altura;
             var intPeso = formulario.elements.peso;
@@ -78,16 +78,21 @@
                     var trVeloci = document.createElement("td");
                     var trIdade = document.createElement("td");
                     var novaLinha = document.createElement("tr");
+
                     trAnimal.innerText = txtAnimal.value;
                     trAltura.innerText = parseInt(intAltura.value);
                     trPeso.innerText =  parseInt(intPeso.value);
                     trVeloci.innerText = parseInt(intVelocidade.value);
                     trIdade.innerText = parseInt(intIdade.value);
+                    pesoTotal += parseInt(intPeso.value);
+
                     novaLinha.appendChild(trAnimal);
                     novaLinha.appendChild(trAltura);
                     novaLinha.appendChild(trPeso);
                     novaLinha.appendChild(trVeloci);
                     novaLinha.appendChild(trIdade);
+                    bdTabela.appendChild(novaLinha);
+
                     if(parseInt(intAltura.value) > maiorAltura)
                     {
                         maiorAltura = parseInt(intAltura.value);
