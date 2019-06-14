@@ -39,27 +39,54 @@
             </thead>
             <tbody id="tabela">
             </tbody>
+            <tfoot>
+                <tr>
+                    <td>Maiores</td>
+                    <td id="alto"></td>
+                    <td id = "pesado"></td>
+                    <td id="veloz"></td>
+                    <td id="longevo"></td>
+                </tr>
+                <tr>
+                    <td>Médias</td>
+                    <td id="mdAltura"></td>
+                    <td id = "mdPeso"></td>
+                    <td id="mdVeloci"></td>
+                    <td id="mdIdade"></td>
+                </tr>
+            </tfoot>
         </table>
-        <div>
-            <label>mais alto: <span id="alto"></span></label>
-            <label>mais pesado: <span id = "pesado"></span></label>
-            <label>mais veloz: <span id="veloz"></span></label>
-            <label>mais longevo: <span id="longevo"></span></label>
-        </div>
     </main>
     <script>
         var btnApagar = document.getElementById("apagar");
         var bdTabela = document.getElementById("tabela");
         var formulario = document.forms.formCarac;
-        var maiorPeso=0,maiorIdade=0,maiorAltura=0,maiorVeloci=0, pesoTotal=0;
+        var maiorPeso=0,maiorIdade=0,maiorAltura=0,maiorVeloci=0,
+        alturaTotal=0, pesoTotal=0,velocidadeTotal=0,idadeTotal=0;
 
         var txtMaiorAltura= document.getElementById("alto");
         var txtMaiorPeso= document.getElementById("pesado");
         var txtMaiorVeloci= document.getElementById("veloz");
         var txtMaiorIdade= document.getElementById("longevo");
 
-        formulario.addEventListener("submit",adicionarAnimal);
+        var txtAltauraMd= document.getElementById("mdAltura");
+        var txtPesoMd= document.getElementById("mdPeso");
+        var txtVelociMd= document.getElementById("mdVeloci");
+        var txtIdadeMd= document.getElementById("mdIdade");
 
+        formulario.addEventListener("submit",adicionarAnimal);
+        btnApagar.addEventListener("click",apargarAnimais);
+
+        function apargarAnimais()
+        {
+            maiorPeso=0,maiorIdade=0,maiorAltura=0,maiorVeloci=0,
+            alturaTotal=0, pesoTotal=0,velocidadeTotal=0,idadeTotal=0;
+            txtMaiorAltura.innerText ="";
+            txtMaiorPeso.innerText ="";
+            txtMaiorVeloci.innerText ="";
+            txtMaiorIdade.innerText ="";
+            bdTabela.innerText =""; 
+        }
         function adicionarAnimal(e)
         {
             e.preventDefault();
@@ -84,7 +111,11 @@
                     trPeso.innerText =  parseInt(intPeso.value);
                     trVeloci.innerText = parseInt(intVelocidade.value);
                     trIdade.innerText = parseInt(intIdade.value);
+
+                    alturaTotal += parseInt(intAltura.value);
                     pesoTotal += parseInt(intPeso.value);
+                    velocidadeTotal += parseInt(intVelocidade.value);
+                    idadeTotal += parseInt(intIdade.value);
 
                     novaLinha.appendChild(trAnimal);
                     novaLinha.appendChild(trAltura);
@@ -92,6 +123,8 @@
                     novaLinha.appendChild(trVeloci);
                     novaLinha.appendChild(trIdade);
                     bdTabela.appendChild(novaLinha);
+
+
 
                     if(parseInt(intAltura.value) > maiorAltura)
                     {
