@@ -54,7 +54,23 @@
         var trTabela = document.getElementById("tabela");
         var formulario = document.forms.formCarac;
         var maiorPeso=0,maiorIdade=0,maiorAltura=0,maiorVeloci=0;
-        
+        formulario.addEventListener("submit",adicionarAnimal);
+        function adicionarAnimal()
+        {
+            e.preventDefaul();
+            var txtAnimal = formulario.elements.animal;
+            var intAltura = formulario.elements.altura;
+            var intPeso = formulario.elements.peso;
+            var intVelocidade = formulario.elements.velocidade;
+            var intIdade = formulario.elements.idade;
+            if(txtAnimal.value!="" && intAltura.value!="" && intPeso.value!="" && intVelocidade.value!="" && intIdade.value!="")
+            {
+                if(!isNaN(parseInt(intIdade.value)) && !isNaN(parseInt(intAltura.value)) && !isNaN(parseInt(intPeso.value)) && !isNaN(parseInt(intVelocidade.value)))
+                {
+                    
+                }
+            }
+        }
     </script>
 </body>
 </html>
